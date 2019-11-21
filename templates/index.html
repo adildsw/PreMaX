@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home | PreMaX</title>
+    <link rel="shortcut icon" type="image/x-icon" href="static/assets/icon.ico"/>
+
+		<script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="static/js/particles.min.js"></script>
+		<script>
+			particlesJS.load('particles-js', 'static/assets/particles.json', function() {});
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+		<style type="text/css">
+			body, html{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: #a0b2b2;
+				background-image: url('static/assets/background.png');
+				background-size: cover;
+				background-position: center;
+				background-repeat: repeat;
+			}
+
+			@font-face {
+				font-family: Maven Pro Bold;
+				src: url('static/assets/MavenPro-Bold.ttf');
+			}
+
+			@font-face {
+				font-family: Maven Pro;
+				src: url('static/assets/MavenPro-Regular.ttf');
+			}
+
+			.parent-card{
+				border-radius: 10px;
+				box-shadow: 0px 3px 15px #000;
+			}
+
+			.maven {
+				font-family: Maven Pro, sans-serif;
+			}
+
+			.mavenbold {
+				font-family: Maven Pro Bold, sans-serif;
+			}
+
+			#particles-js {
+			  position: fixed;
+			  top: 0;
+			  right: 0;
+			  bottom: 0;
+			  left: 0;
+			  z-index: 0;
+			}
+		</style>
+	</head>
+	<body>
+  	<a href="/about" class="btn btn-light ml-4 mt-4" style="position: fixed; z-index: 1"><img src="static/assets/info.png" width="30px" height="30px"></a>
+
+		<div class="container">
+			<div id="particles-js"></div>
+
+			<div class="text-center"><img class="img-fluid" src="static/assets/logo.png"></div>
+
+			<div class="container bg-light parent-card col-md-10">
+				<div class="row p-2">
+					<div class="col-md-6" style="border-right: 4px solid white; background-color: #f4ddd3">
+						<p></p>
+						<h4 class="display-4 text-center text-dark mavenbold">Air Pressure System</h4>
+						<img class="img img-fluid" src="static/assets/airpressure.gif"/>
+						<a href="/airpressure" class="btn btn-primary btn-block text-light mavenmedium">Air Pressure System Failure Prediction</a>
+						<p></p>
+					</div>
+					<div class="col-md-6" style="border-left: 4px solid white; background-color: #00be92">
+						<p></p>
+						<h4 class="display-4 text-center text-light mavenbold">Water Pump System</h4>
+						<img class="img img-fluid" src="static/assets/pump.gif"/>
+						<a href="/pump" class="btn-block btn btn-primary mavenmedium">Water Pump System Failure Prediction</a>
+						<p></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

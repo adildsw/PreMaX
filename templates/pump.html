@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Water Pump System | PreMaX</title>
+  <link rel="shortcut icon" type="image/x-icon" href="static/assets/icon.ico"/>
+
+	<script type="text/javascript" src="static/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="static/js/particles.min.js"></script>
+	<script>
+		particlesJS.load('particles-js', 'static/assets/particles.json', function() {});
+	</script>
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+	<style type="text/css">
+		body, html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-color: #85b3b3;
+			background-image: url('static/assets/pumpback.png');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.parent-card {
+			border-radius: 10px;
+			box-shadow: 0px 3px 15px #000;
+		}
+
+		@font-face {
+			font-family: Maven Pro Bold;
+			src: url('static/assets/MavenPro-Bold.ttf');
+		}
+
+		@font-face {
+			font-family: Maven Pro;
+			src: url('static/assets/MavenPro-Regular.ttf');
+		}
+
+		@font-face {
+			font-family: Maven Pro Medium;
+			src: url('static/assets/MavenPro-Medium.ttf');
+		}
+
+		.maven {
+			font-family: Maven Pro, sans-serif;
+		}
+
+		.mavenbold {
+			font-family: Maven Pro Bold, sans-serif;
+		}
+
+		.mavenmedium {
+			font-family: Maven Pro Medium, sans-serif;
+		}
+
+    .code {
+      background-color: black;
+      border-radius: 4px;
+      color: white;
+    }
+
+		#particles-js {
+		  position: fixed;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+		  z-index: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="particles-js"></div>
+
+	<a href="/" class="btn btn-light ml-4 mt-4" style="position: fixed"><img src="static/assets/home.png" width="30px" height="30px"></a>
+
+	<div class="text-center"><img class="img-fluid" src="static/assets/logo.png"></div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="p-3 parent-card" style="background-color: rgba(255, 255, 255, 0.6)">
+							<h3 class="display-4 text-center mavenmedium">PREDICT</h3>
+							<p class="text-center mavenmedium">Select sensor/simulated data file and click on <strong>Predict</strong> to determine the system state:</p>
+							<div class="text-center">
+								<button class="btn btn-block btn-secondary mb-2 mavenmedium" id="file-sel-btn">Select File</button>
+								<input type="file" class="d-none" name="select" id="file" accept=".txt">
+							</div>
+							<button class="btn btn-block btn-info mavenmedium" onclick="predict()">Predict</button>
+							<p class="alert alert-warning mt-2 d-none text-center mavenmedium" id="no-file">No File Selected</p>
+							<p class="alert alert-success mt-2 d-none text-center mavenmedium" id="result-pass">Result : Repair Not Needed</p>
+							<p class="alert alert-danger mt-2 d-none text-center mavenmedium" id="result-fail">Result : Repair Needed</p>
+						</div>
+					</div>
+				</div>
+				<p></p>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="p-3 parent-card" style="background-color: rgba(255, 255, 255, 0.6)">
+							<h3 class="display-4 text-center mavenmedium">SIMULATE</h3>
+              <p class="text-center mavenmedium">Select system state and click on <strong>Generate</strong> to simulate sensor data of selected state:</p>
+							<div class="radio text-center">
+                <strong><input type="radio" value="positive" name="rad" class="maven" checked> &nbsp; Pump Normal</strong> &nbsp;
+								<strong><input type="radio" value="negative" name="rad" class="maven"> &nbsp; Pump Failure</strong> &nbsp;
+							</div>
+              <p></p>
+							<button class="btn btn-block btn-success mt-2 mavenmedium" onclick="generate()">Generate</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-8">
+				<div class="row p-3 parent-card" style="background-color: rgba(255, 255, 255, 0.6)">
+					<div class="col-md-12">
+						<h2 class="display-4 text-center mt-1 mavenmedium">WATER PUMP SYSTEM</h2>
+            <h3 class="mavenmedium">Description</h3>
+            <p class="mavenmedium" style="text-align: justify">The system in focus is the Water Pump System which pumps water in a specified area of the city. This system predicts Water Pump module failure to allow faster repairs before the entire area's water supply comes to a halt.</p>
+            <p class="mavenmedium"><strong>Input Description: </strong>The input to the system must contain 51 comma-separated feature values recorded from the Water Pump sensors.</p>
+            <h3 class="mavenmedium">API</h3>
+            <p class="mavenmedium">Water pump status can be checked remotely using the <strong>API</strong>. To use the API, use the following HTTP GET Request URI:</p>
+            <pre class="code">http://&lt;server-ip&gt;:&lt;server-port&gt;/predict?model=pump&data=&lt;sensor-data&gt;</pre>
+            <p class="mavenmedium">The API can return 3 values:
+              <code><strong>"0" : FAILURE || "1" : NORMAL || "None" : INVALID INPUT</strong></code>
+            </p>
+            <h3 class="mavenmedium">Other Resources</h3>
+            <p></p>
+            <a href="static/notebook/pumpnotebook.html" target="_blank" class="btn btn-danger mavenmedium">Model Training Log</a>&nbsp;
+            <a href="https://www.kaggle.com/nphantawee/pump-sensor-data/" target="_blank" class="btn btn-warning mavenmedium">Dataset</a>&nbsp;
+            <p></p>
+          </div>
+				</div>
+			</div>
+	</div>
+</div>
+
+<script>
+	$('#file-sel-btn').on('click', function(){
+		$('#file').click();
+	});
+
+	$('#file').on('change', function(){
+		filename = $('#file').val();
+		filename = filename.substring(12,);
+
+		$('#file-sel-btn').text('Selected File: ' + filename);
+	});
+
+	function generate(){
+		var radio = $("input[name='rad']:checked").val();
+		window.location.href = "/generate?model=pump&class_type=" + radio;
+	}
+
+	function predict(){
+		$('#no-file').addClass('d-none');
+		$('#result-pass').addClass('d-none');
+		$('#result-fail').addClass('d-none');
+		var fileToLoad = document.getElementById("file").files[0];
+
+		if(fileToLoad == null){
+			$('#no-file').removeClass('d-none');
+			return null;
+		}
+			var fileReader = new FileReader();
+			fileReader.onload = function(fileLoadedEvent){
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200){
+					if(this.responseText == "0")
+						$('#result-fail').removeClass('d-none').html('Result: Pump Failure Detected');
+					else if(this.responseText == "1")
+						$('#result-pass').removeClass('d-none').html('Result: Pump Normal');
+					else
+						$('#no-file').removeClass('d-none').html('Error: Invalid Input');
+				}
+			};
+			//put the URL and the args below
+			xhttp.open("GET", "/predict?model=pump&data=" + textFromFileLoaded, false);
+			xhttp.send();
+			};
+
+			fileReader.readAsText(fileToLoad, "UTF-8");
+	}
+</script>
+
+</body>
+</html>
